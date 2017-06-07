@@ -9,9 +9,9 @@
 	$allow_url_include = 'allow_url_include';
 	$upload_max_filesize = 'upload_max_filesize';
 	$post_max_size = 'post_max_size';
-	$max_execution_time = 'max_execution_time';
 	$memory_limit = 'memory_limit';
 	$max_file_uploads = 'max_file_uploads';
+	$file_uploads = 'file_uploads';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,11 +49,15 @@ div.option-helper{
     box-sizing:border-box;
     background:#c5c5c5;
     padding:5px 15px;
-    border-radius:6px;
     display:none;
 }
 .option-helper p{
 	margin:0;
+	margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100%;
 }
 /*Табы*/
 ul.tabs{
@@ -79,7 +83,6 @@ ul.tabs li.current{
 	background:#ededed;
 	padding:15px;
 }
-
 .tab-content.current{
 	display:inherit;
 }
@@ -116,7 +119,7 @@ ul.tabs li.current{
 					<p><b>short_open_tag :</b> <?php echo ini_get($short_open_tag) == '1' ? 'Включено' : 'Выключено'; ?></p>
 				</div>
 				<div class="option-helper">
-					
+					<p>Возможность записывать PHP теги через сокращенную форму</p>
 				</div>
 			</div>
 			<div class="option">
@@ -124,15 +127,7 @@ ul.tabs li.current{
 					<p><b>asp_tags :</b> <?php echo ini_get($asp_tags) == 'On' ? 'Включено' : 'Выключено'; ?></p>
 				</div>
 				<div class="option-helper">
-
-				</div>
-			</div>
-			<div class="option">
-				<div class="option-label">
-					<p><b>max_execution_time :</b> <?php echo ini_get($max_execution_time); ?></p>
-				</div>
-				<div class="option-helper">
-
+					<p>Запись PHP тегов в стиле ASP</p>
 				</div>
 			</div>
 			<div class="option">
@@ -140,7 +135,7 @@ ul.tabs li.current{
 					<p><b>display_errors :</b> <?php echo ini_get($display_errors) == '1' ? 'Включено' : 'Выключено'; ?></p>
 				</div>
 				<div class="option-helper">
-
+					<p>Показывать ошибки</p>
 				</div>
 			</div>
 			<div class="option">
@@ -148,7 +143,7 @@ ul.tabs li.current{
 					<p><b>allow_url_fopen :</b> <?php echo ini_get($allow_url_fopen) == '1' ? 'Включено' : 'Выключено'; ?></p>
 				</div>
 				<div class="option-helper">
-					
+					<p>Возможность работать с URL объектами как с обычными файлами</p>
 				</div>
 			</div>
 			<div class="option">
@@ -156,7 +151,7 @@ ul.tabs li.current{
 					<p><b>allow_url_include :</b> <?php echo ini_get($allow_url_include) == '1' ? 'Включено' : 'Выключено'; ?></p>
 				</div>
 				<div class="option-helper">
-					
+					<p>Разрешить использовать fopen, для работы с URL</p>
 				</div>
 			</div>
 			<div class="option">
@@ -164,7 +159,7 @@ ul.tabs li.current{
 					<p><b>upload_max_filesize :</b> <?php echo ini_get($upload_max_filesize); ?></p>
 				</div>
 				<div class="option-helper">
-					
+					<p>Максимальный размер загружаемого на сервер файла</p>
 				</div>
 			</div>
 			<div class="option">
@@ -172,7 +167,7 @@ ul.tabs li.current{
 					<p><b>post_max_size :</b> <?php echo ini_get($post_max_size); ?></p>
 				</div>
 				<div class="option-helper">
-					<!--должен быть больше upload_max_filesize-->
+					<p>Устанавливает максимально допустимый размер данных, отправляемых методом POST</p>
 				</div>
 			</div>
 			<div class="option">
@@ -180,7 +175,7 @@ ul.tabs li.current{
 					<p><b>max_execution_time :</b> <?php echo ini_get($max_execution_time); ?></p>
 				</div>
 				<div class="option-helper">
-					<!--максимальное время выполнения скрипта-->
+					<p>Максимальное время, за которое скрипт должен загрузиться</p>
 				</div>
 			</div>
 			<div class="option">
@@ -188,7 +183,7 @@ ul.tabs li.current{
 					<p><b>memory_limit :</b> <?php echo ini_get($memory_limit); ?></p>
 				</div>
 				<div class="option-helper">
-					<!--максимальный объем памяти-->
+					<p>Максимальный объем памяти (должен быть больше post_max_size)</p>
 				</div>
 			</div>
 			<div class="option">
@@ -196,7 +191,15 @@ ul.tabs li.current{
 					<p><b>max_file_uploads :</b> <?php echo ini_get($max_file_uploads); ?></p>
 				</div>
 				<div class="option-helper">
-					<!--максимальное кол-во загружаемых файлов-->
+					<p>Максимальное кол-во загружаемых файлов</p>
+				</div>
+			</div>
+			<div class="option">
+				<div class="option-label">
+					<p><b>file_uploads :</b> <?php echo ini_get($file_uploads)== '1' ? 'Включено' : 'Выключено'; ?></p>
+				</div>
+				<div class="option-helper">
+					<p>Разрешить/запретить закачку файлов на сервер</p>
 				</div>
 			</div>
 		</div>
