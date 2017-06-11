@@ -71,7 +71,7 @@ ul.tabs li.current{
 .tab-content.current{
 	display:inherit;
 }
-form.web-form input{
+form input{
 	padding:3px 5px;
 	margin-bottom:15px;
 }
@@ -232,13 +232,13 @@ form.web-form input{
 			<label for="file_uploads">file_uploads:</label>
 			<input pattern="[A-Za-z]{2,3}" title="Значение On или Off" type="text" name="file_uploads" placeholder="On/Off"><br>
 			
-			<input type="submit" value="Сохранить" name="submit">
+			<input type="submit" value="Сохранить" name="submit-web">
 		</form>
 		<?php
 			$ini = php_ini_loaded_file();
 			$get_ini = file_get_contents($ini);
 
-			if( isset($_POST['submit']) ){
+			if( isset($_POST['submit-web']) ){
 
 				$engine = str_replace( 'engine=', 'engine=' . $_POST['engine'] . "\n; engine=", $get_ini);
 				$short_open_tag = str_replace('short_open_tag=', 'short_open_tag='. $_POST['engine']. "\n; short_open_tag=", $engine);
@@ -253,17 +253,58 @@ form.web-form input{
 				$max_file_uploads = str_replace('max_file_uploads=', 'max_file_uploads='. $_POST['max_file_uploads']. "\n; max_file_uploads=", $memory_limit);
 				$file_uploads = str_replace('file_uploads=', 'file_uploads='. $_POST['file_uploads']. "\n; file_uploads=", $max_file_uploads);
 
-
-
 				file_put_contents($ini, $file_uploads);				
 			}	
 
 		?>
-
-		<?php echo $qserqwd;?>
 	</div><!--end tab-->
 	<div id="tab-3" class="tab-content">
-		Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+	<form action="index.php" method="POST" class="dns-form">
+		<label for="domain">Домен: </label>
+		<input type="text" name="domain" placeholder="Введите ваш новый домен"><br>
+		<label for="domain">Email администратора: </label>
+		<input type="text" name="admin_email" placeholder="Введите ваш email"><br>
+		<label for="domain">Папка сайта: </label>
+		<input type="text" name="folder" placeholder="Введите название папки"><br>
+
+		<input type="submit" name="submit-dns">
+	</form>
+		<?php
+			
+
+			if( isset($_POST['submit-dns']) ){
+
+				$domain_to_hosts = "\n127.0.0.1  " . $_POST['domain'];
+				file_put_contents('C:\Windows\System32\drivers\etc\hosts', $domain_to_hosts, FILE_APPEND);
+
+				$get_dns = file_get_contents('W:\XAMPP\apache\conf\extra\httpd-vhosts.conf');
+				$dns_content = "\nNameVirtualHost *:80
+
+				<VirtualHost *:80>
+				    DocumentRoot 'W:\\XAMPP\\htdocs'
+				    ServerName localhost
+				</VirtualHost>
+
+				<VirtualHost *:80>
+				    ServerAdmin " . $_POST['admin_email'] . "
+				    DocumentRoot 'W:\\XAMPP\\htdocs\\" . $_POST['folder'] . "'
+				    ServerName " . $_POST['domain'] . " 
+				    ServerAlias www." . $_POST['domain'] . "
+				    ErrorLog 'W:\\XAMPP\\htdocs\\". $_POST['folder'] ."\\error.log'
+				    CustomLog 'W:\\XAMPP\htdocs\\". $_POST['folder'] ."\\access.log' combined
+				  <Directory 'W:\\XAMPP\\htdocs\\" . $_POST['folder'] . "'>
+				    AllowOverride All
+				    Order allow,deny
+				    Allow from all
+				  </Directory>
+				</VirtualHost>";
+
+				file_put_contents("W:\\XAMPP\apache\conf\\extra\httpd-vhosts.conf", $dns_content, FILE_APPEND);
+
+			}
+
+			
+		?>
 	</div><!--end tab-->
 
 
