@@ -1,18 +1,3 @@
-<?php
-	//переменные параметров конфига
-	$engine = 'engine';
-	$short_open_tag = 'short_open_tag';
-	$asp_tags = 'asp_tags';
-	$max_execution_time = 'max_execution_time';
-	$display_errors = 'display_errors';
-	$allow_url_fopen = 'allow_url_fopen';
-	$allow_url_include = 'allow_url_include';
-	$upload_max_filesize = 'upload_max_filesize';
-	$post_max_size = 'post_max_size';
-	$memory_limit = 'memory_limit';
-	$max_file_uploads = 'max_file_uploads';
-	$file_uploads = 'file_uploads';
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,6 +71,10 @@ ul.tabs li.current{
 .tab-content.current{
 	display:inherit;
 }
+form.web-form input{
+	padding:3px 5px;
+	margin-bottom:15px;
+}
 </style>
 <body>
 	<ul class="tabs">
@@ -108,7 +97,7 @@ ul.tabs li.current{
 			
 			<div class="option">
 				<div class="option-label">
-					<p><b>engine :</b> <?php echo ini_get($engine) == '1' ? 'Включено' : 'Выключено'; ?></p>
+					<p><b>engine :</b> <?php echo ini_get('engine') == '1' ? 'Включено' : 'Выключено'; ?></p>
 				</div>
 				<div class="option-helper">
 					<p>Включение/выключение PHP на сервере</p>
@@ -116,7 +105,7 @@ ul.tabs li.current{
 			</div>
 			<div class="option">
 				<div class="option-label">
-					<p><b>short_open_tag :</b> <?php echo ini_get($short_open_tag) == '1' ? 'Включено' : 'Выключено'; ?></p>
+					<p><b>short_open_tag :</b> <?php echo ini_get('short_open_tag') == '1' ? 'Включено' : 'Выключено'; ?></p>
 				</div>
 				<div class="option-helper">
 					<p>Возможность записывать PHP теги через сокращенную форму</p>
@@ -124,7 +113,7 @@ ul.tabs li.current{
 			</div>
 			<div class="option">
 				<div class="option-label">
-					<p><b>asp_tags :</b> <?php echo ini_get($asp_tags) == 'On' ? 'Включено' : 'Выключено'; ?></p>
+					<p><b>asp_tags :</b> <?php echo ini_get('asp_tags') == 'On' ? 'Включено' : 'Выключено'; ?></p>
 				</div>
 				<div class="option-helper">
 					<p>Запись PHP тегов в стиле ASP</p>
@@ -132,7 +121,7 @@ ul.tabs li.current{
 			</div>
 			<div class="option">
 				<div class="option-label">
-					<p><b>display_errors :</b> <?php echo ini_get($display_errors) == '1' ? 'Включено' : 'Выключено'; ?></p>
+					<p><b>display_errors :</b> <?php echo ini_get('display_errors') == '1' ? 'Включено' : 'Выключено'; ?></p>
 				</div>
 				<div class="option-helper">
 					<p>Показывать ошибки</p>
@@ -140,7 +129,7 @@ ul.tabs li.current{
 			</div>
 			<div class="option">
 				<div class="option-label">
-					<p><b>allow_url_fopen :</b> <?php echo ini_get($allow_url_fopen) == '1' ? 'Включено' : 'Выключено'; ?></p>
+					<p><b>allow_url_fopen :</b> <?php echo ini_get('allow_url_fopen') == '1' ? 'Включено' : 'Выключено'; ?></p>
 				</div>
 				<div class="option-helper">
 					<p>Возможность работать с URL объектами как с обычными файлами</p>
@@ -148,7 +137,7 @@ ul.tabs li.current{
 			</div>
 			<div class="option">
 				<div class="option-label">
-					<p><b>allow_url_include :</b> <?php echo ini_get($allow_url_include) == '1' ? 'Включено' : 'Выключено'; ?></p>
+					<p><b>allow_url_include :</b> <?php echo ini_get('allow_url_include') == '1' ? 'Включено' : 'Выключено'; ?></p>
 				</div>
 				<div class="option-helper">
 					<p>Разрешить использовать fopen, для работы с URL</p>
@@ -156,7 +145,7 @@ ul.tabs li.current{
 			</div>
 			<div class="option">
 				<div class="option-label">
-					<p><b>upload_max_filesize :</b> <?php echo ini_get($upload_max_filesize); ?></p>
+					<p><b>upload_max_filesize :</b> <?php echo ini_get('upload_max_filesize'); ?></p>
 				</div>
 				<div class="option-helper">
 					<p>Максимальный размер загружаемого на сервер файла</p>
@@ -164,7 +153,7 @@ ul.tabs li.current{
 			</div>
 			<div class="option">
 				<div class="option-label">
-					<p><b>post_max_size :</b> <?php echo ini_get($post_max_size); ?></p>
+					<p><b>post_max_size :</b> <?php echo ini_get('post_max_size'); ?></p>
 				</div>
 				<div class="option-helper">
 					<p>Устанавливает максимально допустимый размер данных, отправляемых методом POST</p>
@@ -172,7 +161,7 @@ ul.tabs li.current{
 			</div>
 			<div class="option">
 				<div class="option-label">
-					<p><b>max_execution_time :</b> <?php echo ini_get($max_execution_time); ?></p>
+					<p><b>max_execution_time :</b> <?php echo ini_get('max_execution_time'); ?></p>
 				</div>
 				<div class="option-helper">
 					<p>Максимальное время, за которое скрипт должен загрузиться</p>
@@ -180,7 +169,7 @@ ul.tabs li.current{
 			</div>
 			<div class="option">
 				<div class="option-label">
-					<p><b>memory_limit :</b> <?php echo ini_get($memory_limit); ?></p>
+					<p><b>memory_limit :</b> <?php echo ini_get('memory_limit'); ?></p>
 				</div>
 				<div class="option-helper">
 					<p>Максимальный объем памяти (должен быть больше post_max_size)</p>
@@ -188,7 +177,7 @@ ul.tabs li.current{
 			</div>
 			<div class="option">
 				<div class="option-label">
-					<p><b>max_file_uploads :</b> <?php echo ini_get($max_file_uploads); ?></p>
+					<p><b>max_file_uploads :</b> <?php echo ini_get('max_file_uploads'); ?></p>
 				</div>
 				<div class="option-helper">
 					<p>Максимальное кол-во загружаемых файлов</p>
@@ -196,7 +185,7 @@ ul.tabs li.current{
 			</div>
 			<div class="option">
 				<div class="option-label">
-					<p><b>file_uploads :</b> <?php echo ini_get($file_uploads)== '1' ? 'Включено' : 'Выключено'; ?></p>
+					<p><b>file_uploads :</b> <?php echo ini_get('file_uploads')== '1' ? 'Включено' : 'Выключено'; ?></p>
 				</div>
 				<div class="option-helper">
 					<p>Разрешить/запретить закачку файлов на сервер</p>
@@ -205,7 +194,79 @@ ul.tabs li.current{
 		</div>
 	</div><!--end tab-->
 	<div id="tab-2" class="tab-content">
-		 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	<h3>Настройка Веб-сервера</h3>
+		<form action="index.php" method="POST" class="web-form">
+			<label for="engine">Engine:</label>
+			<input pattern="[A-Za-z]{2,3}" title="Значение On или Off" type="text" name="engine" placeholder="On/Off" ><br>
+
+			<label for="short_open_tag">short_open_tag:</label>
+			<input pattern="[A-Za-z]{2,3}" title="Значение On или Off" type="text" name="short_open_tag" placeholder="On/Off"><br>
+
+			<label for="asp_tags">asp_tags:</label>
+			<input pattern="[A-Za-z]{2,3}" title="Значение On или Off" type="text" name="asp_tags" placeholder="On/Off"><br>
+
+			<label for="display_errors">display_errors:</label>
+			<input pattern="[A-Za-z]{2,3}" title="Значение On или Off" type="text" name="display_errors" placeholder="On/Off"><br>
+
+			<label for="allow_url_fopen">allow_url_fopen:</label>
+			<input pattern="[A-Za-z]{2,3}" title="Значение On или Off" type="text" name="allow_url_fopen" placeholder="On/Off"><br>
+
+			<label for="allow_url_include">allow_url_include:</label>
+			<input pattern="[A-Za-z]{2,3}" title="Значение On или Off" type="text" name="allow_url_include" placeholder="On/Off"><br>
+
+			<label for="upload_max_filesize">upload_max_filesize:</label>
+			<input pattern="[0-9]{1,3}" title="Число от 0 до 999" type="text" name="upload_max_filesize" placeholder="Number"><br>
+
+			<label for="post_max_size">post_max_size:</label>
+			<input pattern="[0-9]{1,3}" title="Число от 0 до 999" type="text" name="post_max_size" placeholder="Number"><br>
+
+			<label for="max_execution_time">max_execution_time:</label>
+			<input pattern="[0-9]{1,3}" title="Число от 0 до 999" type="text" name="max_execution_time" placeholder="Number"><br>
+
+			<label for="memory_limit">memory_limit:</label>
+			<input pattern="[0-9]{1,3}" title="Число от 0 до 999" type="text" name="memory_limit" placeholder="Number"><br>
+
+			<label for="max_file_uploads">max_file_uploads:</label>
+			<input pattern="[0-9]{1,3}" title="Число от 0 до 999" type="text" name="max_file_uploads" placeholder="Number"><br>
+
+			<label for="file_uploads">file_uploads:</label>
+			<input pattern="[A-Za-z]{2,3}" title="Значение On или Off" type="text" name="file_uploads" placeholder="On/Off"><br>
+			
+			<input type="submit" value="Сохранить" name="submit">
+		</form>
+		<?php
+			// $ini = php_ini_loaded_file();
+			// $get_ini = file_get_contents($ini);
+
+			// if( isset($_POST['submit']) ){
+
+			// 	$engine = str_replace( 'engine=', 'engine=' . $_POST['engine'] . "\n; engine=", $get_ini);
+			// 	file_put_contents($ini, $engine);
+
+			// 	$short_open_tag = str_replace('short_open_tag=', 'short_open_tag='. $_POST['engine']. "\n; short_open_tag=", $get_ini);
+			// 	file_put_contents($ini, $short_open_tag);	
+
+			// 	$asp_tags = str_replace('asp_tags=', 'asp_tags='. $_POST['asp_tags']. "\n; asp_tags=", $get_ini);
+			// 	file_put_contents($ini, $asp_tags);				
+			// }
+
+			$ini = php_ini_loaded_file();
+			$get_ini = fopen($ini, "a+t");
+			$get_ini_string = fread($get_ini, filesize($ini) );
+			
+			str_replace( 'short_open_tag=', 'short_open_tag=' . $_POST['short_open_tag'] . "\n; short_open_tag=", $get_ini_string);
+			
+			//var_dump($get_ini_string);
+			fwrite($get_ini, $get_ini_string);
+			fclose($get_ini);
+			
+			// if( isset($_POST['submit']) ){
+			// 	$short_open_tag = "lpolplplpl";
+			// 	fwrite($get_ini, $short_open_tag);
+			// 	fclose($get_ini);
+			// }
+
+		?>
 	</div><!--end tab-->
 	<div id="tab-3" class="tab-content">
 		Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -213,8 +274,6 @@ ul.tabs li.current{
 
 
 
-
-	
 
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 	<script>
