@@ -185,7 +185,7 @@ form.web-form input{
 			</div>
 			<div class="option">
 				<div class="option-label">
-					<p><b>file_uploads :</b> <?php echo ini_get('file_uploads')== '1' ? 'Включено' : 'Выключено'; ?></p>
+					<p><b>file_uploads :</b> <?php echo ini_get('file_uploads') == '1' ? 'Включено' : 'Выключено'; ?></p>
 				</div>
 				<div class="option-helper">
 					<p>Разрешить/запретить закачку файлов на сервер</p>
@@ -196,8 +196,8 @@ form.web-form input{
 	<div id="tab-2" class="tab-content">
 	<h3>Настройка Веб-сервера</h3>
 		<form action="index.php" method="POST" class="web-form">
-			<label for="engine">Engine:</label>
-			<input pattern="[A-Za-z]{2,3}" title="Значение On или Off" type="text" name="engine" placeholder="On/Off" ><br>
+			<label for="engine">Engine*:</label>
+			<input pattern="[A-Za-z]{2,3}" title="Значение On или Off" type="text" name="engine" placeholder="On/Off" required="required"><br>
 
 			<label for="short_open_tag">short_open_tag:</label>
 			<input pattern="[A-Za-z]{2,3}" title="Значение On или Off" type="text" name="short_open_tag" placeholder="On/Off"><br>
@@ -235,38 +235,32 @@ form.web-form input{
 			<input type="submit" value="Сохранить" name="submit">
 		</form>
 		<?php
-			// $ini = php_ini_loaded_file();
-			// $get_ini = file_get_contents($ini);
-
-			// if( isset($_POST['submit']) ){
-
-			// 	$engine = str_replace( 'engine=', 'engine=' . $_POST['engine'] . "\n; engine=", $get_ini);
-			// 	file_put_contents($ini, $engine);
-
-			// 	$short_open_tag = str_replace('short_open_tag=', 'short_open_tag='. $_POST['engine']. "\n; short_open_tag=", $get_ini);
-			// 	file_put_contents($ini, $short_open_tag);	
-
-			// 	$asp_tags = str_replace('asp_tags=', 'asp_tags='. $_POST['asp_tags']. "\n; asp_tags=", $get_ini);
-			// 	file_put_contents($ini, $asp_tags);				
-			// }
-
 			$ini = php_ini_loaded_file();
-			$get_ini = fopen($ini, "a+t");
-			$get_ini_string = fread($get_ini, filesize($ini) );
-			
-			str_replace( 'short_open_tag=', 'short_open_tag=' . $_POST['short_open_tag'] . "\n; short_open_tag=", $get_ini_string);
-			
-			//var_dump($get_ini_string);
-			fwrite($get_ini, $get_ini_string);
-			fclose($get_ini);
-			
-			// if( isset($_POST['submit']) ){
-			// 	$short_open_tag = "lpolplplpl";
-			// 	fwrite($get_ini, $short_open_tag);
-			// 	fclose($get_ini);
-			// }
+			$get_ini = file_get_contents($ini);
+
+			if( isset($_POST['submit']) ){
+
+				$engine = str_replace( 'engine=', 'engine=' . $_POST['engine'] . "\n; engine=", $get_ini);
+				$short_open_tag = str_replace('short_open_tag=', 'short_open_tag='. $_POST['engine']. "\n; short_open_tag=", $engine);
+				$asp_tags = str_replace('asp_tags=', 'asp_tags='. $_POST['asp_tags']. "\n; asp_tags=", $short_open_tag);
+				$display_errors = str_replace('display_errors=', 'display_errors='. $_POST['display_errors']. "\n; display_errors=", $asp_tags);
+				$allow_url_fopen = str_replace('allow_url_fopen=', 'allow_url_fopen='. $_POST['allow_url_fopen']. "\n; allow_url_fopen=", $display_errors);
+				$allow_url_include = str_replace('allow_url_include=', 'allow_url_include='. $_POST['allow_url_include']. "\n; allow_url_include=", $allow_url_fopen);
+				$upload_max_filesize = str_replace('upload_max_filesize=', 'upload_max_filesize='. $_POST['upload_max_filesize']. "M\n; upload_max_filesize=", $allow_url_include);
+				$post_max_size = str_replace('post_max_size=', 'post_max_size='. $_POST['post_max_size']. "M\n; post_max_size=", $upload_max_filesize);
+				$max_execution_time = str_replace('max_execution_time=', 'max_execution_time='. $_POST['max_execution_time']. "\n; max_execution_time=", $post_max_size);
+				$memory_limit = str_replace('memory_limit=', 'memory_limit='. $_POST['memory_limit']. "M\n; memory_limit=", $max_execution_time);
+				$max_file_uploads = str_replace('max_file_uploads=', 'max_file_uploads='. $_POST['max_file_uploads']. "\n; max_file_uploads=", $memory_limit);
+				$file_uploads = str_replace('file_uploads=', 'file_uploads='. $_POST['file_uploads']. "\n; file_uploads=", $max_file_uploads);
+
+
+
+				file_put_contents($ini, $file_uploads);				
+			}	
 
 		?>
+
+		<?php echo $qserqwd;?>
 	</div><!--end tab-->
 	<div id="tab-3" class="tab-content">
 		Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
